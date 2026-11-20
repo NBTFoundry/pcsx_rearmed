@@ -123,7 +123,7 @@ FUNCTION(mix_chan): @ (int *SSumLR, int count, int lv, int rv)
     blt         mc_finish
     stmia       r2!, {r6-r8,lr}
     bgt         0b
-    ldmeqfd     sp!, {r4-r8,pc}
+    ldmfdeq     sp!, {r4-r8,pc}
 
 mc_finish:
     stmia       r2!, {r6,r7}
