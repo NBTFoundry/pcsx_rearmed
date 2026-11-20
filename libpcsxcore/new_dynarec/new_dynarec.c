@@ -945,7 +945,9 @@ static void clear_all_regs(signed char regmap[])
 
 // get_reg: get allocated host reg from mips reg
 // returns -1 if no such mips reg was allocated
-#if defined(__arm__) && defined(HAVE_ARMV6) && HOST_REGS == 13 && EXCLUDE_REG == 11
+// (the asm version loads whole words of regmap, which isn't word aligned)
+#if defined(__arm__) && defined(HAVE_ARMV6) && HOST_REGS == 13 && EXCLUDE_REG == 11 \
+    && defined(__ARM_FEATURE_UNALIGNED)
 
 extern signed char get_reg(const signed char regmap[], signed char r);
 
